@@ -47,7 +47,7 @@ function makePersonObject(param1,param2,param3) {
   }
   return person;
 }
-makePersonObject('5','Leia','leia@leia.com')
+makePersonObject();
 /**
  * ### Challenge `getName`
  * 
@@ -62,9 +62,8 @@ makePersonObject('5','Leia','leia@leia.com')
  * the returned value should look like `Hello, my name is Leia`.
 */
 function getName(name) {
-  return `Hello, my name is {name}`;
+  return `Hello, my name is ${name.name}`;
 }
-getName();
 
 /**
  * ### Challenge `makeSmartPerson`
@@ -182,7 +181,11 @@ function getLastCarInfo(inventory) {
  * it will return `This is a Lincoln Navigator`.
 */
 function getCarInfoById(inventory, id) {
-  return `This is a ${inventory[id].car_make} ${inventory[id].car_model}`
+   for (let i = 0; i < inventory.length; i++){
+     if(inventory[i].id === id){
+       return `This is a ${inventory[i].car_make} ${inventory[i].car_model}`;
+     }
+   }
 }
 
 /**
@@ -193,8 +196,18 @@ function getCarInfoById(inventory, id) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
-function sortCarInventory(/* code here */) {
-  /* code here */
+function sortCarInventory(inventory) {
+  let carModels = [];
+  return inventory.sort(function(a,b){
+    let compare = 0;
+    if(a.car_model > b.car_model){
+      compare = 1;
+    }
+    else if(a.car_model < b.car_model){
+      compare = -1;
+    }
+    return compare;
+  });
 }
 
 /**
@@ -237,8 +250,7 @@ function getOlderCars(/* code here */) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
-function getGermanCars(/* code here */) {
-  /* code here */
+function getGermanCars() {
 }
 
 /**
